@@ -1,7 +1,8 @@
 %% -*- mode: erlang -*-
 {description, "Create an OTP compliant Nitrogen release"}.
 {variables, [
-             {name, "my_nitrogen_app", "Name of the Nitrogen app."}
+             {name, "my_nitrogen_app", "Name of the Nitrogen app."},
+             {description, "A Nitrogen Application", "App description."}
             ]}.
 {dir, "{{name}}"}.
 {dir, "{{name}}/config"}.
@@ -25,3 +26,5 @@
 {template, "sup.erl_template", "{{name}}/src/{{name}}_sup.erl"}.
 
 {template, "default.erl_template", "{{name}}/src/{{name}}.erl"}.
+
+{template, "app.src_template", "{{name}}/src/{{name}}.app.src"}.

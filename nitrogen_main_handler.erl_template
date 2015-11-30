@@ -1,5 +1,5 @@
 %% -*- mode: erlang -*-
-module(nitrogen_main_handler).
+-module(nitrogen_main_handler).
 -export([
          run/0,
          ws_init/0

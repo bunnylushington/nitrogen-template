@@ -6,7 +6,7 @@
         , is_development/0
         ]).
 
--spec template(file:name_all) -> file:filename_all().
+-spec template(file:name_all()) -> file:filename_all().
 template(File) ->
   filename:join([code:priv_dir({{name}}), templates, File]).
 
