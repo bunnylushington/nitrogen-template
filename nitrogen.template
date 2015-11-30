@@ -1,0 +1,27 @@
+%% -*- mode: erlang -*-
+{description, "Create an OTP compliant Nitrogen release"}.
+{variables, [
+             {name, "my_nitrogen_app", "Name of the Nitrogen app."}
+            ]}.
+{dir, "{{name}}"}.
+{dir, "{{name}}/config"}.
+{dir, "{{name}}/src"}.
+{dir, "{{name}}/priv"}.
+{dir, "{{name}}/priv/templates"}.
+{dir, "{{name}}/priv/static"}.
+{dir, "{{name}}/priv/static/nitrogen"}.
+{dir, "{{name}}/priv/static/css"}.
+
+{template, "rebar.config_template", "{{name}}/rebar.config"}.
+
+{template, "nitrogen_main_handler.erl_template", 
+ "{{name}}/src/nitrogen_main_handler.erl"}.
+
+{template, "config_handler.erl_template",
+ "{{name}}/src/handlers/{{name}}_config_handler.erl"}.
+
+{template, "app.erl_template", "{{name}}/src/{{name}}_app.erl"}.
+
+{template, "sup.erl_template", "{{name}}/src/{{name}}_sup.erl"}.
+
+{template, "default.erl_template", "{{name}}/src/{{name}}.erl"}.
