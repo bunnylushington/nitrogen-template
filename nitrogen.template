@@ -2,7 +2,9 @@
 {description, "Create an OTP compliant Nitrogen release"}.
 {variables, [
              {name, "my_nitrogen_app", "Name of the Nitrogen app."},
-             {description, "A Nitrogen Application", "App description."}
+             {description, "A Nitrogen Application", "App description."},
+             {bind, "0.0.0.0", "IP address to bind"},
+             {port, 3000, "Port to bind"}
             ]}.
 {dir, "{{name}}"}.
 {dir, "{{name}}/config"}.
@@ -13,18 +15,39 @@
 {dir, "{{name}}/priv/static/nitrogen"}.
 {dir, "{{name}}/priv/static/css"}.
 
-{template, "rebar.config_template", "{{name}}/rebar.config"}.
+{template, "rebar.config_template", 
+ "{{name}}/rebar.config"}.
 
-{template, "nitrogen_main_handler.erl_template", 
+{template, "src/nitrogen_main_handler.erl_template", 
  "{{name}}/src/nitrogen_main_handler.erl"}.
 
-{template, "config_handler.erl_template",
+{template, "src/config_handler.erl_template",
  "{{name}}/src/handlers/{{name}}_config_handler.erl"}.
 
-{template, "app.erl_template", "{{name}}/src/{{name}}_app.erl"}.
+{template, "src/app.erl_template", 
+ "{{name}}/src/{{name}}_app.erl"}.
 
-{template, "sup.erl_template", "{{name}}/src/{{name}}_sup.erl"}.
+{template, "src/sup.erl_template", 
+ "{{name}}/src/{{name}}_sup.erl"}.
 
-{template, "default.erl_template", "{{name}}/src/{{name}}.erl"}.
+{template, "src/default.erl_template", 
+ "{{name}}/src/{{name}}.erl"}.
 
-{template, "app.src_template", "{{name}}/src/{{name}}.app.src"}.
+{template, "src/app.src_template", 
+ "{{name}}/src/{{name}}.app.src"}.
+
+{template, "config/vm.args_template",
+ "{{name}}/config/vm.args"}.
+
+{template, "config/simple_bridge.config_template",
+ "{{name}}/config/simple_bridge.config"}.
+
+{template, "config/app.config_template",
+ "{{name}}/config/{{name}}.config"}.
+
+{template, "config/sys.config_template",
+ "{{name}}/config/sys.config"}.
+
+{template, "config/sync.config_template",
+ "{{name}}/config/sync.config"}.
+

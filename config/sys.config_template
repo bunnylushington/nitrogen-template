@@ -1,0 +1,7 @@
+%% -*- mode: erlang -*-
+
+[
+ "config/{{name}}.config",
+ "config/simple_bridge.config",
+ "config/sync.config"
+].
