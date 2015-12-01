@@ -51,3 +51,9 @@
 {template, "config/sync.config_template",
  "{{name}}/config/sync.config"}.
 
+{template, "sample/index.erl_template",
+ "{{name}}/src/index.erl"}.
+
+{template, "sample/index.html_template",
+ "{{name}}/priv/templates/index.html"}.
+
