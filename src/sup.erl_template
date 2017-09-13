@@ -29,6 +29,7 @@ init([]) ->
                 [ crypto
                 , nprocreg
                 , simple_bridge
+                , simple_cache
                 ]),
   {ok, { {one_for_one, 5, 10}, []} }.
 
