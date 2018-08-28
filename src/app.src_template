@@ -8,6 +8,13 @@
                           , nprocreg
                           , simple_bridge
                           , simple_cache
+                          , sync
+                          , yamerl
+                          , qdate
+                          , erlsom
+                          , uuid
+                          , bbmustache
+                          , markdown
                           ]},
   {applications,
    [kernel,

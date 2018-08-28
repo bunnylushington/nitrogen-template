@@ -1,8 +1,11 @@
 %% -*- mode: erlang -*-
 
 -module({{name}}).
+-include_lib("nitrogen_core/include/wf.hrl").
+
 -export([
           template/1
+        , auth_template/1
         , is_development/0
         ]).
 
@@ -10,6 +13,14 @@
 template(File) ->
   filename:join([code:priv_dir({{name}}), templates, File]).
 
+-spec auth_template(File :: file:name_all()) -> file:filename_all().
+auth_template(File) -> 
+  case wf:user() of
+    undefined -> wf:redirect_to_login("/login");
+    _         -> #template{ file=?MODULE:template(File) }
+  end.
+
 -spec is_development() -> boolean().
 is_development() -> 
   application:get_env({{name}}, development_mode, false).
+

@@ -4,7 +4,9 @@
              {name, "my_nitrogen_app", "Name of the Nitrogen app."},
              {description, "A Nitrogen Application", "App description."},
              {bind, "0.0.0.0", "IP address to bind"},
-             {port, 3000, "Port to bind"}
+             {port, 3003, "Port to bind"},
+             {author_name, "Bunny Lushington"},
+             {author_email, "bunny@bapi.us"}
             ]}.
 {dir, "{{name}}"}.
 {dir, "{{name}}/config"}.
