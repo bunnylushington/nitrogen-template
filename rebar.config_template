@@ -4,7 +4,7 @@
 
 {deps, [ 
          {cowboy,   "1.1.2"}
-       , {simple_bridge,       {git, "git://github.com/bunnylushington/simple_bridge", {ref, "73c76b2"}}}
+       , {simple_bridge,       {git, "git://github.com/nitrogen/simple_bridge",        {ref, "cc4213b"}}}
        , {nprocreg,            {git, "git://github.com/nitrogen/nprocreg",             {ref, "af48a07"}}}
        , {nitrogen_core,       {git, "git://github.com/nitrogen/nitrogen_core",        {ref, "4a48562"}}}
        , {simple_cache,        {git, "git://github.com/nitrogen/simple_cache",         {ref, "a8dd713"}}}
