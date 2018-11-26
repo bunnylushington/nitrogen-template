@@ -1,0 +1,5 @@
+<div class="fixed-bottom text-center footer">
+  <span class="small">
+        {{name}}
+    </span>
+</div>

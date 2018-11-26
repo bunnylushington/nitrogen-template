@@ -1,0 +1,18 @@
+-module({{name}}_view).
+-include_lib("nitrogen_core/include/wf.hrl").
+-compile({parse_transform, rekt}).
+
+-export([ 
+          header/0
+        , footer/0
+        , menu/0
+        ]).
+
+header() -> 
+  #template{ file={{name}}:template("header.html") }.
+
+footer() -> 
+  #template{ file={{name}}:template("footer.html") }.
+
+menu() -> 
+  #template{ file={{name}}:template("menu.html") }.
