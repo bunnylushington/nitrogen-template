@@ -58,7 +58,7 @@
  "{{name}}/src/index.erl"}.
 
 {template, "sample/view.erl_template",
- "{{name/src/{{name}_view.erl"}.
+ "{{name}}/src/{{name}}_view.erl"}.
 
 {template, "sample/index.html_template",
  "{{name}}/priv/templates/index.html"}.
