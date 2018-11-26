@@ -69,6 +69,9 @@
 {template, "sample/header.html_template",
  "{{name}}/priv/templates/header.html"}.
 
+{template, "sample/footer.html_template",
+ "{{name}}/priv/templates/footer.html"}.
+
 {template, "sample/menu.html_template",
  "{{name}}/priv/templates/menu.html"}.
 

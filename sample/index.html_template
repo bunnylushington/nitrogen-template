@@ -6,7 +6,7 @@
   </head>
 
   <body>
-    [[[ fol_view:menu() ]]]
+    [[[ {{name}}_view:menu() ]]]
     <div class="container">
       [[[page:body()]]]
     </div>
