@@ -74,3 +74,9 @@
 
 {template, "sample/include.hrl_template",
  "{{name}}/include/{{name}}.hrl"}.
+
+{template, "docker-compose.yml_template",
+ "{{name}}/docker-compose.yml"}.
+
+{template, ".gitignore_template",
+ "{{name}}/.gitignore"}.
