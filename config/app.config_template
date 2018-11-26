@@ -1,3 +1,18 @@
 %% -*- mode: erlang -*-
 
-[{ {{name}}, [{development_mode, true}] }].
+[{ {{name}}, [{development_mode, true}] },
+
+ {pgpool,
+  [{databases,
+    [{db, [{pool,
+            [{size, 10},
+             {max_overflow, 20},
+             {strategy, lifo}]},
+           {connection,
+            [{host, "db"},
+             {user, "{{name}}"},
+             {pass, "{{name}}"},
+             {options,
+              [{ssl, false},
+               {database, "{{name}}"}] }] }] }] }] }].
+

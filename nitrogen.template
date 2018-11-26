@@ -12,6 +12,7 @@
 {dir, "{{name}}/config"}.
 {dir, "{{name}}/src"}.
 {dir, "{{name}}/priv"}.
+{dir, "{{name}}/include"}.
 {dir, "{{name}}/priv/templates"}.
 {dir, "{{name}}/priv/static"}.
 {dir, "{{name}}/priv/static/nitrogen"}.
@@ -68,3 +69,8 @@
 {template, "sample/header.html_template",
  "{{name}}/priv/templates/header.html"}.
 
+{template, "sample/menu.html_template",
+ "{{name}}/priv/templates/menu.html"}.
+
+{template, "sample/include.hrl_template",
+ "{{name}}/include/{{name}}.hrl"}.

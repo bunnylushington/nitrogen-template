@@ -1,0 +1,37 @@
+version: '3'
+services:
+  fe:
+    image: erlang:20
+    ports:
+      - "{{port}}:{{port}}"
+    volumes:
+      - files:/files
+      - ".:/{{name}}"
+    networks:
+      - net
+    entrypoint:
+      - /bin/bash
+    tty: true
+    stdin_open: true
+    working_dir: /{{name}}
+    domainname: {{name}}.local
+    hostname: fe
+    entrypoint: ["rebar3", "run"]
+    
+  db:
+    image: postgres:11
+    networks:
+      - net
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: {{name}}
+      POSTGRES_USER: {{name}}
+      
+volumes:
+  files:
+  database:
+
+networks:
+  net:
+    

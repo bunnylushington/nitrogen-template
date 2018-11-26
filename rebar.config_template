@@ -12,6 +12,7 @@
 
          %% not strictly necessary but i almost always uses these libs
        , {yamerl,   "0.7.0"}
+       , {pgpool,   "1.2.0"}
        , {qdate,               {git, "git://github.com/choptastic/qdate",              {ref, "1cccb83"}}}
        , {erlsom,              {git, "git://github.com/willemdj/erlsom",               {ref, "e2c1e1f"}}}
        , {uuid,                {git, "git://github.com/avtobiff/erlang-uuid",          {ref, "cb02a20"}}}

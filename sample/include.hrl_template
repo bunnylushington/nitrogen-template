@@ -1,0 +1,6 @@
+%% The name of this application.
+-define(APP, {{name}}).
+
+%% The database pgpool is defined to use.
+-define(DB, db).
+

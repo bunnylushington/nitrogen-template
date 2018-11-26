@@ -1,0 +1,55 @@
+-module({{name}}_db).
+-include_lib("{{name}}/include/{{name}}.hrl").
+-export([
+          query/2
+        , map_query/2
+        , list_query/2
+        , scalar_query/2
+        ]).
+
+
+query(Template, Params) ->
+  SQL = render_template(Template),
+  pgpool:equery(?DB, SQL, Params).
+
+map_query(Template, Params) ->
+  results_to_map(query(Template, Params)).
+
+list_query(Template, Params) ->
+  results_to_list(query(Template, Params)).
+
+scalar_query(Template, Params) ->
+  results_to_scalar(query(Template, Params)).
+
+
+%% Query results.
+results_to_list({ok, _, Data}) -> [ R || {R} <- Data];
+results_to_list(_) -> [].
+
+results_to_scalar({ok, _, [{Res}]}) -> Res;
+results_to_scalar(_) -> [].
+
+results_to_map({ok, Columns, Data}) ->
+  ColNames = [ N || { column, N, _, _, _, _ } <- Columns ],
+  zip_columns(Data, ColNames, []);
+results_to_map(_) -> #{}.
+
+zip_columns([], _, Acc) -> lists:reverse(Acc);
+zip_columns([H|T], Cols, Acc) ->
+  List = lists:zip(Cols, tuple_to_list(H)),
+  Map = maps:from_list(List),
+  zip_columns(T, Cols, [Map | Acc]).
+
+
+
+%% Template management.
+render_template(Template) ->
+  render_template(Template, #{}).
+
+render_template(Template, Data) ->
+  File = template_file(Template),
+  {ok, Text} = file:read_file(File),
+  bbmustache:render(Text, Data).
+
+template_file(Template) ->
+  filename:join([code:priv_dir(?APP), "sql", wf:to_list(Template) ++ ".sql"]).
