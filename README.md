@@ -122,7 +122,7 @@ $ docker container exec -it my_app_db_1 /bin/bash
 (the password also defaults to `my_app`.)
 
 There's a default `.gitignore` file present and so git can be
-initialized with the usual seqquence of
+initialized with the usual sequence of
 
 ```
 $ cd /var/tmp/my_app
