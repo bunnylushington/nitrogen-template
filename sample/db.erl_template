@@ -17,7 +17,7 @@
 %%
 %% The results will be as pgpool:squery returns them.
 
--spec evaluate_file(Filename :: file::filename()) -> 
+-spec evaluate_file(Filename :: file:filename()) -> 
                        any() | {error, no_connection}.
 evaluate_file(Filename) -> 
   {ok, SQL} = file:read_file(Filename),
