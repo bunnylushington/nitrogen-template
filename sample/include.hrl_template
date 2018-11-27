@@ -4,3 +4,11 @@
 %% The database pgpool is defined to use.
 -define(DB, db).
 
+%% The DDL directory.
+-define(DDL_DIR, filename:join([code:priv_dir(?APP), "ddl"])).
+
+%% The SQL directory.
+-define(SQL_DIR, filename:join([code:priv_dir(?APP), "sql"])).
+
+%% Extension identifying a sql file.
+-define(SQL_EXT, ".sql").

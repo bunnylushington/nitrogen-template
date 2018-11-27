@@ -1,26 +1,89 @@
 -module({{name}}_db).
 -include_lib("{{name}}/include/{{name}}.hrl").
 -export([
-          query/2
+          evaluate_file/1
+        , query/2
         , map_query/2
         , list_query/2
         , scalar_query/2
         ]).
 
+%% @doc Execute a SQL file using the defined pgpool.  
+%%
+%% Note that SQL scripts executed with this function can contain
+%% multiple statements separated by a semicolon.
+%%
+%% 1> evaluate_file("/var/tmp/my_app/priv/ddl/00-setup.sql").
+%%
+%% The results will be as pgpool:squery returns them.
 
+-spec evaluate_file(Filename :: file::filename()) -> 
+                       any() | {error, no_connection}.
+evaluate_file(Filename) -> 
+  {ok, SQL} = file:read_file(Filename),
+  pgpool:squery(?DB, SQL).
+
+
+%% @doc Execute a SQL query.  
+%%
+%% The Template will be a file in priv/sql specified without the .sql
+%% extension.  For instance, to execute priv/sql/lookup.sql which
+%% might read:
+%%
+%%   SELECT * FROM all_names WHERE id = $1;
+%%
+%% 1> query("lookup", ["myid"]).
+%%
+%% The results will be as pgpool:equery returns them.  Note that there
+%% may only be one SQL statement per file.
+
+-spec query(Template :: string(), Params :: list()) -> 
+               any() | {error, no_connection}.
 query(Template, Params) ->
   SQL = render_template(Template),
   pgpool:equery(?DB, SQL, Params).
 
+%% @doc Execute a SQL query and return a map.
+%%
+%% Like query/2 but parses the results into a list of maps. For
+%% example
+%%
+%% 1> map_query("selectall", []).
+%% [ #{<<"col_1">> => <<"col1 val 1">>, <<"col_2">> => <<"col2 val 1">>},
+%%   #{<<"col_1">> => <<"col1 val 2">>, <<"col_2">> => <<"col2 val 2">>} ]
+
+-spec map_query(Template :: string(), Params :: list()) -> [map()]. 
 map_query(Template, Params) ->
   results_to_map(query(Template, Params)).
 
+%% @doc Execute a SQL query and return a list.
+%%
+%% Like query/2 but parses the results into a list.  This is only
+%% useful when only one column is being returned.  
+%% 
+%% 1> list_query("select-options", []).
+%% [<<"opt1">>, <<"opt2">>, <<"opt3">>].
+
+-spec list_query(Template :: string(), Params :: list()) -> list().
 list_query(Template, Params) ->
   results_to_list(query(Template, Params)).
 
+%% @doc Execute a SQL query and return a scalar.
+%%
+%% Like query/2 but parses the results into a scalar value.  Useful
+%% for SQL statements that return a single value (e.g., count()).
+%%
+%% 1> scalar_query("count-values", []).
+%% 54
+
+-spec scalar_query(Template :: string(), Params :: list()) -> any().
 scalar_query(Template, Params) ->
   results_to_scalar(query(Template, Params)).
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% INTERNAL FUNCTIONS %%
+%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% Query results.
 results_to_list({ok, _, Data}) -> [ R || {R} <- Data];
@@ -52,4 +115,4 @@ render_template(Template, Data) ->
   bbmustache:render(Text, Data).
 
 template_file(Template) ->
-  filename:join([code:priv_dir(?APP), "sql", wf:to_list(Template) ++ ".sql"]).
+  filename:join([?SQL_DIR, wf:to_list(Template) ++ ?SQL_EXT]).
