@@ -15,6 +15,7 @@
                           , uuid
                           , bbmustache
                           , markdown
+                          , pgpool
                           ]},
   {applications,
    [kernel,
