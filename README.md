@@ -144,4 +144,4 @@ There are some DB functions provided in my_app_db.erl that might be of
 use.  I don't embed SQL directly in Erlang code and so expect that SQL
 files will reside in `my_app/priv/sql`.
 
-Comments, corrections, or additions are always welcome.
+**Comments, corrections, or additions are always welcome.**
