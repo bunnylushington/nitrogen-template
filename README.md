@@ -137,7 +137,7 @@ There are numerous ways of using Nitrogen with or without DB backends
 (many of my projects rely on dets or mnesia), using PostgreSQL is not
 in any way required.
 
-The template assumes the use of Bootstram v4.  I've found that
+The template assumes the use of Bootstrap v4.  I've found that
 Bootstrap and Nitrogen work well together.
 
 There are some DB functions provided in my_app_db.erl that might be of
