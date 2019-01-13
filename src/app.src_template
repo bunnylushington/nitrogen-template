@@ -16,6 +16,7 @@
                           , bbmustache
                           , markdown
                           , pgpool
+                          , rekt
                           ]},
   {applications,
    [kernel,
